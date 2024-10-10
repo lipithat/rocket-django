@@ -13,10 +13,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os, random, string
 from pathlib        import Path
 from dotenv         import load_dotenv
-from str2bool       import str2bool
 from django.contrib import messages
 
 load_dotenv()  # take environment variables from .env.
+
+def str2bool(value):
+    return value.lower() in ['true', '1', 't', 'yes', 'y']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +33,7 @@ if not SECRET_KEY:
 
 # Enable/Disable DEBUG Mode
 DEBUG = str2bool(os.environ.get('DEBUG'))
-#print(' DEBUG -> ' + str(DEBUG) ) 
+print(' DEBUG -> ' + str(DEBUG) ) 
 
 # Hosts Settings
 ALLOWED_HOSTS = ['*']
